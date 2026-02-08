@@ -1,42 +1,74 @@
-const screens=document.querySelectorAll(".screen");
-const magic=document.getElementById("magic");
-const heart=document.getElementById("heart");
+const screens = document.querySelectorAll(".screen");
+const magic = document.getElementById("magic");
+const heartbeat = document.getElementById("heartbeat");
+const wow = document.getElementById("wow");
 
-function show(id){
-  screens.forEach(s=>s.classList.remove("active"));
+// unlock audio on first interaction
+document.body.addEventListener("click", () => {
+  document.querySelectorAll("audio").forEach(a => {
+    a.play().then(() => a.pause()).catch(() => {});
+  });
+}, { once: true });
+
+function showScreen(id) {
+  screens.forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-document.getElementById("openBox").onclick=()=>{
+function openBox() {
   magic.play();
-  show("wishes");
-};
+  showScreen("screen2");
+}
 
-document.getElementById("dubai").onclick=()=>{
-  alert("HOW INCONSIDERATE OF YOU😭😭");
-};
+function badWish(type) {
+  if (type === "meat") {
+    showPopup("NOT WITHOUT ME, BAD BOY 😤😤");
+  } else {
+    showPopup("HOW INCONSIDERATE OF YOU 😭😭");
+  }
+}
 
-document.getElementById("meat").onclick=()=>{
-  alert("NOT WITHOUT ME, BAD BOY 😒😒");
-};
+function wishToSeeBae() {
+  heartbeat.currentTime = 0;
+  heartbeat.play().catch(()=>{});
 
-document.getElementById("bae").onclick=()=>{
-  show("loading");
-  heart.play();
-  const lines=[
+  showScreen("screen3");
+
+  const text = document.getElementById("processingText");
+  const steps = [
     "Locating bae… 👀",
-    "Calculating distance…",
+    "Calculating distance… 📍",
     "Heart connection established 💗",
-    "Wish almost ready…"
+    "Wish almost ready… ✨"
   ];
-  let i=0;
-  const text=document.getElementById("loadingText");
-  const interval=setInterval(()=>{
-    text.textContent=lines[i++];
-    if(i>=lines.length){
+
+  let i = 0;
+  const interval = setInterval(() => {
+    text.textContent = steps[i];
+    i++;
+    if (i === steps.length) {
       clearInterval(interval);
-      heart.pause();
-      show("final");
+
+      heartbeat.pause();
+      heartbeat.currentTime = 0;
+
+      setTimeout(() => {
+        wow.play();
+        showScreen("screen4");
+      }, 1000);
     }
-  },1500);
-};
+  }, 1800);
+}
+
+function openDoor() {
+  // real life moment happens here 😭🚪💖
+}
+
+function showPopup(message) {
+  document.getElementById("popupText").textContent = message;
+  document.getElementById("popupOverlay").classList.remove("hidden");
+}
+
+function closePopup() {
+  document.getElementById("popupOverlay").classList.add("hidden");
+}
