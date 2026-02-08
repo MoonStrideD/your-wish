@@ -3,13 +3,23 @@ const magic = document.getElementById("magic");
 const heartbeat = document.getElementById("heartbeat");
 const wow = document.getElementById("wow");
 
-// unlock audio on first interaction
+const popupOverlay = document.getElementById("popupOverlay");
+const popupBtn = document.getElementById("popupBtn");
+const popupText = document.getElementById("popupText");
+
+// unlock audio on first click
 document.body.addEventListener("click", () => {
   document.querySelectorAll("audio").forEach(a => {
     a.play().then(() => a.pause()).catch(() => {});
   });
 }, { once: true });
 
+// popup close
+popupBtn.addEventListener("click", () => {
+  popupOverlay.classList.add("hidden");
+});
+
+// helper to switch screens
 function showScreen(id) {
   screens.forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -21,11 +31,12 @@ function openBox() {
 }
 
 function badWish(type) {
-  if (type === "meat") {
-    showPopup("NOT WITHOUT ME, BAD BOY 😤😤");
+  if(type === "meat") {
+    popupText.textContent = "NOT WITHOUT ME, BAD BOY 😤😤";
   } else {
-    showPopup("HOW INCONSIDERATE OF YOU 😭😭");
+    popupText.textContent = "HOW INCONSIDERATE OF YOU 😭😭";
   }
+  popupOverlay.classList.remove("hidden");
 }
 
 function wishToSeeBae() {
@@ -46,9 +57,8 @@ function wishToSeeBae() {
   const interval = setInterval(() => {
     text.textContent = steps[i];
     i++;
-    if (i === steps.length) {
+    if(i === steps.length) {
       clearInterval(interval);
-
       heartbeat.pause();
       heartbeat.currentTime = 0;
 
@@ -61,14 +71,5 @@ function wishToSeeBae() {
 }
 
 function openDoor() {
-  // real life moment happens here 😭🚪💖
-}
-
-function showPopup(message) {
-  document.getElementById("popupText").textContent = message;
-  document.getElementById("popupOverlay").classList.remove("hidden");
-}
-
-function closePopup() {
-  document.getElementById("popupOverlay").classList.add("hidden");
+  // This is the final moment IRL 🚪💖
 }
