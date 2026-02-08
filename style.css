@@ -1,12 +1,11 @@
 * {
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
-
 body {
   margin: 0;
   background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .screen {
@@ -32,6 +31,7 @@ button {
   border: none;
   background: hotpink;
   color: white;
+  cursor: pointer;
 }
 
 .dark {
@@ -70,7 +70,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 9999;
+  pointer-events: auto;
 }
 
 .popupBox {
@@ -79,7 +80,16 @@ button {
   border-radius: 20px;
   width: 80%;
   max-width: 300px;
+  text-align: center;
   animation: pop 0.3s ease;
+}
+
+.popupBox p {
+  margin-bottom: 15px;
+}
+
+.popupBox button {
+  cursor: pointer;
 }
 
 .hidden {
