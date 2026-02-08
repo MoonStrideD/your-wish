@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Wish ✨</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+<section class="screen active" id="start">
+  <h1>You’ve been granted one wish today ✨</h1>
+  <button id="openBox">Open</button>
+</section>
+
+<section class="screen" id="wishes">
+  <button id="meat">🥩 I wish to eat meat</button>
+  <button id="dubai">✈️ I wish to go to Dubai</button>
+  <button id="bae">💕 I wish to see my BABE</button>
+</section>
+
+<section class="screen" id="loading">
+  <h1 id="loadingText"></h1>
+</section>
+
+<section class="screen" id="final">
+  <h1>Your wish has been granted.</h1>
+  <button class="pulse">🚪 Open the door</button>
+</section>
+
+</div>
+
+<audio id="magic" src="sounds/magic.mp3"></audio>
+<audio id="heart" src="sounds/heartbeat.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
