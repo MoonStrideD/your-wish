@@ -1,30 +1,92 @@
-body{
-  margin:0;
-  height:100vh;
-  background:#000;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:Arial;
+* {
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
-.screen{display:none;text-align:center}
-.screen.active{display:block}
-
-button{
-  padding:15px 20px;
-  margin:10px;
-  font-size:1.2rem;
-  border-radius:12px;
-  border:none;
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+  overflow: hidden;
 }
 
-.pulse{
-  animation:pulse 1s infinite;
+.screen {
+  display: none;
+  height: 100vh;
+  padding: 30px;
+  text-align: center;
 }
 
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.1)}
+.screen.active {
+  display: block;
+}
+
+h1, h2 {
+  color: #5a0033;
+}
+
+button {
+  margin: 12px;
+  padding: 15px 22px;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  background: hotpink;
+  color: white;
+}
+
+.dark {
+  background: #1a0010;
+  color: white;
+}
+
+.door {
+  background: #ff69b4;
+  animation: pulse 1.5s infinite;
+}
+
+/* hearts animation */
+.hearts::before {
+  content: "💖 💕 😻 💖 💕 😻 💖 💕 😻";
+  font-size: 30px;
+  animation: float 3s infinite alternate;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* popup */
+#popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popupBox {
+  background: #fff0f5;
+  padding: 25px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 300px;
+  animation: pop 0.3s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
